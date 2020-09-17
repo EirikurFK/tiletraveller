@@ -9,3 +9,6 @@ else:
     print("sheise")
 
 # Second part goes here
+
+if 2 > 10:
+  print("Hello")
