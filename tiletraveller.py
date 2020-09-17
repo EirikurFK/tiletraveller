@@ -1,8 +1,8 @@
 # initalizing file
 
 # Algorithm goes here
-
-if shite == yes:
+shite = input('input yes or no')
+if shite == 'yes':
     print("crap")
 
 else:
