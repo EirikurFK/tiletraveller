@@ -2,5 +2,8 @@
 
 # Algorithm goes here
 
-if shite = yes
-    print(crap)
+if shite == yes:
+    print("crap")
+
+else:
+    print("sheise")
