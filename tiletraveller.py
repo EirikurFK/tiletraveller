@@ -1,20 +1,25 @@
-# initalizing file
+# Tile Traveller
 
-# Algorithm goes here
-shite = input('input yes or no: ')
-if shite == 'yes':
-    print("crap")
+def move(direction):
+    if direction == "e":
+        locationx += 1
+        return locationx
+    elif direction == "w":
+        locationx += -1
+        return locationx
+    elif direction == "n":
+        locationy += -1
+        return locationy
+    elif direction == "s":
+        locationy += -1
+        return locationy
 
-else:
-    print("sheise")
+locationx = 1
+locationy = 1
 
-# Second part goes here
 
-if 2 > 10:
-  print("Hello")
+while location != 3,1:
 
-if 2 > 10:
-  print("Hello")
-  
-  if 2 > 10:
-  print("Hello")
+dircetion = input("Direction: ")
+
+movement = move(direction)
