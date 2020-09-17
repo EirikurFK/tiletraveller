@@ -61,7 +61,7 @@ def move(direction):
 locationx = 1
 locationy = 1
 
-while locationx != 3 and locationy != 1:  
+while (locationx != 3) or (locationy != 1):  
   available_directions(locationx, locationy)
   direction = input("Direction: ")
   if direction in available_directions():
