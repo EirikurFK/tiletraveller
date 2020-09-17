@@ -12,3 +12,9 @@ else:
 
 if 2 > 10:
   print("Hello")
+
+if 2 > 10:
+  print("Hello")
+  
+  if 2 > 10:
+  print("Hello")
