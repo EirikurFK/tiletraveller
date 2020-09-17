@@ -7,3 +7,5 @@ if shite == yes:
 
 else:
     print("sheise")
+
+# Second part goes here
