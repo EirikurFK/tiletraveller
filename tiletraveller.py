@@ -6,8 +6,14 @@
 import random
 
 LEVER_POSITIONS = [[1,2],[2,2],[2,3],[3,2]]
-YES_OR_NO = random.choice([YES, NO])
-RANDOM_CHOISE = random.choice([NORTH, EAST, SOUTH, WEST])
+
+def get_random_direction():
+    direction = random.choice(["N", "E", "S", "W"])
+    return direction
+
+def get_random_lever_pull():
+    pull_lever = random.choice(["Y", "N"])
+    return pull_lever
 
 def available_directions(locationx, locationy):
     if locationx == 1:
@@ -45,7 +51,9 @@ def available_directions(locationx, locationy):
 
 
 def pull_lever(coin_count):
-    pull_lever = input("Pull a lever (y/n): ").upper()
+    # pull_lever = input("Pull a lever (y/n): ").upper()
+    pull_lever = get_random_lever_pull()
+    print("Pull a lever (y/n):", pull_lever.lower())
     if pull_lever == "Y":
         coin_count = get_coin(coin_count)
 
@@ -76,7 +84,7 @@ def play():
     locationx = 1
     locationy = 1
     coin_count = 0
-    move_count = 0
+    moves = 0
     previous_location = []
     while True:
         current_location = [locationx, locationy]
@@ -87,12 +95,12 @@ def play():
                         coin_count = pull_lever(coin_count)
 
         directions = available_directions(locationx, locationy)
-        direction = input("Direction: ")
-        move_count += 1
-        direction = direction.upper()
-
+        # direction = input("Direction: ")
+        # direction = direction.upper()
+        direction = get_random_direction()
+        print("Direction:", direction.lower())
         previous_location = [locationx, locationy]
-
+        
         if direction in directions:
             if direction == "E" or direction == "W":
                 locationx = move(direction, locationx, locationy)
@@ -100,20 +108,17 @@ def play():
                 locationy = move(direction,locationx, locationy)
         else:
             print("Not a valid direction!")
+        
+        moves += 1
 
         if locationx == 3 and locationy == 1:
-            print("Victory! Total coins {}. Moves {}.".format(coin_count, move_count))
+            print("Victory! Total coins {}. Moves {}.".format(coin_count, moves))
             break
 
-
-
-
 # LEVER_POSITIONS = [[1,2][2,2][2,3],[3,2]]
-proceed = "y"
-while proceed == "y":
+proceed = "Y"
+while proceed == "Y":
     input_seed = int(input("Input seed: "))
-    sedd = random.seed(input_seed)
+    random.seed(input_seed)
     play()
-    proceed = input("Play again (y/n): ")
-
-
+    proceed = input("Play again (y/n): ").upper()
