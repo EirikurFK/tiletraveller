@@ -3,7 +3,7 @@
 # S: -1 to y (unless 2,3 eða ef y = 1)
 # W: -1 to x (unless 3,2 eða ef x = 1)
 # N: +1 to y (unless 2,2 eða ef y = 3)
-
+LEVER_POSITIONS = [[1,2],[2,2],[2,3],[3,2]]
 
 def available_directions(locationx, locationy):
     if locationx == 1:
@@ -11,7 +11,6 @@ def available_directions(locationx, locationy):
             print("You can travel: (N)orth.")
             available = "N"
         elif locationy == 2:
-            pull_lever(coin_count)
             print("You can travel: (N)orth or (E)ast or (S)outh.")
             available = "ENS"
         elif locationy == 3:
@@ -22,11 +21,9 @@ def available_directions(locationx, locationy):
             print("You can travel: (N)orth.")
             available = "N"
         elif locationy == 2:
-            pull_lever(coin_count)
             print("You can travel: (S)outh or (W)est.")
             available = "WS"
         else:
-            pull_lever()
             print("You can travel: (E)ast or (W)est.")
             available = "WE"
     elif locationx == 3:
@@ -34,7 +31,6 @@ def available_directions(locationx, locationy):
             print("You can travel: (N)orth.")
             available = "N"
         elif locationy == 2:
-            pull_lever()
             print("You can travel: (N)orth or (S)outh.")
             available = "NS"
         else:
@@ -58,11 +54,6 @@ def get_coin(coin_count):
 
     return coin_count
 
-    
-
-  
-
-
 def move(direction, locationx, locationy):
     if direction == "E":
         locationx += 1
@@ -80,11 +71,21 @@ def move(direction, locationx, locationy):
 locationx = 1
 locationy = 1
 coin_count = 0
-
+previous_location = []
+# LEVER_POSITIONS = [[1,2][2,2][2,3],[3,2]]
 while True:
+    current_location = [locationx, locationy]
+    if current_location != previous_location:
+        for position in LEVER_POSITIONS:
+            if locationx == position[0]:
+                if locationy == position[1]:
+                    coin_count = pull_lever(coin_count)
+
     directions = available_directions(locationx, locationy)
     direction = input("Direction: ")
     direction = direction.upper()
+
+    previous_location = [locationx, locationy]
 
     if direction in directions:
         if direction == "E" or direction == "W":
