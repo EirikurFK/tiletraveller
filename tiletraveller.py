@@ -68,33 +68,44 @@ def move(direction, locationx, locationy):
         locationy += 1
         return locationy
 
-locationx = 1
-locationy = 1
-coin_count = 0
-previous_location = []
-# LEVER_POSITIONS = [[1,2][2,2][2,3],[3,2]]
-while True:
-    current_location = [locationx, locationy]
-    if current_location != previous_location:
-        for position in LEVER_POSITIONS:
-            if locationx == position[0]:
-                if locationy == position[1]:
-                    coin_count = pull_lever(coin_count)
+def play():
+    locationx = 1
+    locationy = 1
+    coin_count = 0
+    previous_location = []
+    while True:
+        current_location = [locationx, locationy]
+        if current_location != previous_location:
+            for position in LEVER_POSITIONS:
+                if locationx == position[0]:
+                    if locationy == position[1]:
+                        coin_count = pull_lever(coin_count)
 
-    directions = available_directions(locationx, locationy)
-    direction = input("Direction: ")
-    direction = direction.upper()
+        directions = available_directions(locationx, locationy)
+        direction = input("Direction: ")
+        direction = direction.upper()
 
-    previous_location = [locationx, locationy]
+        previous_location = [locationx, locationy]
 
-    if direction in directions:
-        if direction == "E" or direction == "W":
-            locationx = move(direction, locationx, locationy)
+        if direction in directions:
+            if direction == "E" or direction == "W":
+                locationx = move(direction, locationx, locationy)
+            else:
+                locationy = move(direction,locationx, locationy)
         else:
-            locationy = move(direction,locationx, locationy)
-    else:
-        print("Not a valid direction!")
+            print("Not a valid direction!")
 
-    if locationx == 3 and locationy == 1:
-        print("Victory! Total coins {}.".format(coin_count))
-        break
+        if locationx == 3 and locationy == 1:
+            print("Victory! Total coins {}.".format(coin_count))
+            break
+
+
+
+
+# LEVER_POSITIONS = [[1,2][2,2][2,3],[3,2]]
+proceed = "y"
+while proceed == "y":
+    play()
+    proceed = input("Play again (y/n): ")
+
+
