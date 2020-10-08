@@ -3,7 +3,11 @@
 # S: -1 to y (unless 2,3 eða ef y = 1)
 # W: -1 to x (unless 3,2 eða ef x = 1)
 # N: +1 to y (unless 2,2 eða ef y = 3)
+import random
+
 LEVER_POSITIONS = [[1,2],[2,2],[2,3],[3,2]]
+YES_OR_NO = random.choice([YES, NO])
+RANDOM_CHOISE = random.choice([NORTH, EAST, SOUTH, WEST])
 
 def available_directions(locationx, locationy):
     if locationx == 1:
@@ -72,6 +76,7 @@ def play():
     locationx = 1
     locationy = 1
     coin_count = 0
+    move_count = 0
     previous_location = []
     while True:
         current_location = [locationx, locationy]
@@ -83,6 +88,7 @@ def play():
 
         directions = available_directions(locationx, locationy)
         direction = input("Direction: ")
+        move_count += 1
         direction = direction.upper()
 
         previous_location = [locationx, locationy]
@@ -96,7 +102,7 @@ def play():
             print("Not a valid direction!")
 
         if locationx == 3 and locationy == 1:
-            print("Victory! Total coins {}.".format(coin_count))
+            print("Victory! Total coins {}. Moves {}.".format(coin_count, move_count))
             break
 
 
@@ -105,6 +111,8 @@ def play():
 # LEVER_POSITIONS = [[1,2][2,2][2,3],[3,2]]
 proceed = "y"
 while proceed == "y":
+    input_seed = int(input("Input seed: "))
+    sedd = random.seed(input_seed)
     play()
     proceed = input("Play again (y/n): ")
 
